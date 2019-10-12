@@ -1,0 +1,256 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Playlist</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Mixtape template project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap-4.1.2/bootstrap.min.css' %}">
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+<link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/about.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/about_responsive.css' %}">
+
+<link rel="stylesheet" href="{% static 'music/css/style.css' %}">
+</head>
+<body>
+	
+	<!-- Header -->
+	<header class="header-area">
+        <!-- Navbar Area -->
+        <div class="oneMusic-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="oneMusicNav">
+
+                        <!-- Nav brand -->
+                        <a href="{% url 'music:pageD' %}"><span><img src="{% static 'music/img/core-img/logo.png' %}" alt="" style="width: 100px; margin-bottom: 15px"></span></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                               <ul>
+                                    <li><a href="{% url 'music:pageD' %}"><i class="icon-home"></i> Acceuil</a></li>
+                                    <li><a href="#">Albums</a>
+                                    <ul class="dropdown">
+                                    <li><a href="{% url 'music:index' %}">Recent</a></li>
+                                    <li><a href="{% url 'music:albums' %}">Vedette</a></li>
+                                   </ul>
+                                    <li><a href="#"><i class="icon-file-2"></i> Musiques</a>
+                                        <ul class="dropdown">
+                                            <li><a href="">Francaise</a></li>
+                                            <li><a href="">Anglaise</a></li>
+                                            <li><a href="">Espagnole</a></li>
+                                            <li><a href="">Africaine</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="{% url 'music:playlist' %}"><i class="icon-music"></i> Playlists</a></li>
+                                    <li style="display: none;"><a href="{% url 'music:blog' %}"><i class="icon-message"></i> Blog</a></li>
+                                    <li><a href="{% url 'music:contact' %}"><i class="icon-message-1"></i> Contact</a></li>
+                                </ul>
+
+                                <!-- Login/Register & Cart Button -->
+                                <div class="login-register-cart-button d-flex align-items-center">
+                                    <!-- Login/Register -->
+                                    <div class="login-register-btn mr-50">
+                                        <a href="{% url 'music:logout_user' %}" id="loginBtn"><i class="icon-user-3"></i> Deconnecter</a>
+                                    </div>
+                                </div>
+                                </div>
+                            <!-- Nav End -->
+
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+<section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed">
+	<div class="home">
+		<div class="home_inner">
+			<!-- Image artist: https://unsplash.com/@yoannboyer -->
+			<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="{% static 'images/about.jpg' %}" data-speed="0.8"></div>
+			<div class="home_container">
+				<div class="home_content text-center">
+					<div class="home_subtitle" style="color: white">Levanjil<b>Play</b></div>
+					<div class="home_title" style="color: white">Playlistes</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+	<!-- Discs -->
+
+	<div class="discs">
+		<div class="container">
+			<div class="row discs_row align-items-start d-flex">
+				
+				{% for playlist in playlists %}
+				<div class="col-xl-4 col-md-6">
+					<div class="disc">
+						<a href="{% url 'music:detailp' playlist.id %}">
+							<div class="disc_image"><img src="{{ playlist.playlist_logo.url }}" alt="https://unsplash.com/@kasperrasmussen" style="width: 350px"></div>
+							<div class="disc_container">
+								<div>
+									<div class="disc_content_2 d-flex flex-column align-items-center justify-content-center">
+										<div>
+											<div class="disc_title">{{ playlist.playlist_title }}</div>
+											<div class="disc_subtitle">{{ playlist.genre }}</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			{% endfor %}
+
+
+			</div>
+		</div>
+	</div>
+
+	<!-- Artist -->
+
+	<div class="artist">
+		{% for priere in prieres %}
+		<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="{{ priere.priere_logo.url }}" data-speed="0.9"></div>
+		<div class="container">
+			<div class="row">
+
+				<!-- Artist Content -->
+				<div class="col-lg-7 offset-lg-5">
+					<div class="artist_content">
+						<div class="section_title_container">
+							<div class="section_subtitle" style="color: white">Priere</div>
+							<div class="section_title"><h1 style="color: white">Du jour</h1></div>
+						</div>
+						<div class="artist_text">
+							<p style="color: white">{{ priere.body }}</p>
+						</div>
+						<div class="artist_sig"><img src="{% static 'images/sig.png' %}" alt=""></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+
+	<!-- Milestones -->
+
+	<div class="milestones">
+		<div class="milestones_container">
+			<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="{% static 'images/gabe.jpg' %}" data-speed="0.8"></div>
+			<div class="container">
+				<div class="row milestones_row">
+					
+					<!-- Milestone -->
+					<div class="col-xl-3 col-md-6 milestone_col">
+						<div class="milestone d-flex flex-row align-items-center justify-content-start">
+							<div class="milestone_icon"><img src="{% static 'images/icon_1.svg' %}" alt="logo"></div>
+							<div class="milestone_content">
+								<div class="milestone_counter" data-end-value="298" data-sign-after="k">0</div>
+								<div class="milestone_text">Albums</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Milestone -->
+					<div class="col-xl-3 col-md-6 milestone_col">
+						<div class="milestone d-flex flex-row align-items-center justify-content-start">
+							<div class="milestone_icon"><img src="{% static 'images/icon_2.svg' %}" alt="logo"></div>
+							<div class="milestone_content">
+								<div class="milestone_counter" data-end-value="183">0</div>
+								<div class="milestone_text">musique</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Milestone -->
+					<div class="col-xl-3 col-md-6 milestone_col">
+						<div class="milestone d-flex flex-row align-items-center justify-content-start">
+							<div class="milestone_icon"><img src="{% static 'images/icon_4.svg' %}" alt="logo"></div>
+							<div class="milestone_content">
+								<div class="milestone_counter" data-end-value="14">0</div>
+								<div class="milestone_text">playlists</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Milestone -->
+					<div class="col-xl-3 col-md-6 milestone_col">
+						<div class="milestone d-flex flex-row align-items-center justify-content-start">
+							<div class="milestone_icon"><img src="{% static 'images/icon_3.svg' %}" alt=""></div>
+							<div class="milestone_content">
+								<div class="milestone_counter" data-end-value="37">5</div>
+								<div class="milestone_text">Vues</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+
+	<footer class="footer-area">
+        <div class="container">
+            <div class="row d-flex flex-wrap align-items-center">
+                <div class="col-12 col-md-6">
+                    <p class="copywrite-text"><a href="#">
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="" target="_blank">DOCTYPE_CODERS</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'styles/bootstrap-4.1.2/popper.js' %}"></script>
+<script src="{% static 'styles/bootstrap-4.1.2/bootstrap.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/TweenMax.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/TimelineMax.min.js' %}"></script>
+<script src="{% static 'plugins/scrollmagic/ScrollMagic.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/animation.gsap.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/ScrollToPlugin.min.js' %}"></script>
+<script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+<script src="{% static 'plugins/easing/easing.js' %}"></script>
+<script src="{% static 'plugins/progressbar/progressbar.min.js' %}"></script>
+<script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+<script src="{% static 'plugins/jPlayer/jquery.jplayer.min.js' %}"></script>
+<script src="{% static 'plugins/jPlayer/jplayer.playlist.min.js' %}"></script>
+<script src="{% static 'js/about.js' %}"></script>
+
+
+<script src="{% static 'music/js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'music/js/bootstrap/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'music/js/bootstrap/bootstrap.min.js' %}"></script>
+    <!-- All Plugins js -->
+    <script src="{% static 'music/js/plugins/plugins.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'music/js/active.js' %}"></script>
+</body>
+</html>

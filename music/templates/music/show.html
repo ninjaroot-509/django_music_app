@@ -1,0 +1,432 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Acceuil</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'music/css/style.css' %}">
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+        <!-- Navbar Area -->
+        <div class="oneMusic-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="oneMusicNav">
+
+                        <!-- Nav brand -->
+                        <a href="{% url 'music:pageD' %}"><span><img src="{% static 'music/img/core-img/logo.png' %}" alt="" style="width: 100px; margin-bottom: 15px"></span></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="{% url 'music:pageD' %}"><i class="icon-home"></i> Acceuil</a></li>
+                                    <li><a href="#">Albums</a>
+                                    <ul class="dropdown">
+                                    <li><a href="{% url 'music:index' %}">Recent</a></li>
+                                    <li><a href="{% url 'music:albums' %}">Vedette</a></li>
+                                   </ul>
+                                    <li><a href="#"><i class="icon-file-2"></i> Musiques</a>
+                                        <ul class="dropdown">
+                                            <li><a href="">Francaise</a></li>
+                                            <li><a href="">Anglaise</a></li>
+                                            <li><a href="">Espagnole</a></li>
+                                            <li><a href="">Africaine</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="{% url 'music:playlist' %}"><i class="icon-music"></i> Playlists</a></li>
+                                    <li style="display: none;"><a href="{% url 'music:blog' %}"><i class="icon-message"></i> Blog</a></li>
+                                    <li><a href="{% url 'music:contact' %}"><i class="icon-message-1"></i> Contact</a></li>
+                                </ul>
+
+                                <!-- Login/Register & Cart Button -->
+                                <div class="login-register-cart-button d-flex align-items-center">
+                                    <!-- Login/Register -->
+                                    <div class="login-register-btn mr-50">
+                                        <a href="{% url 'music:login_user' %}" id="loginBtn"><b>Connecter</b></a>
+                                    </div>
+
+                                    <!-- Cart Button -->
+                                    <div class="login-register-btn mr-50">
+                                        <a href="{% url 'music:register' %}" id="registerBtn"><b><i class="icon-user"></i> S'inscrire</b></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Nav End -->
+
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Hero Area Start ##### -->
+    <section class="hero-area">
+        <div class="hero-slides owl-carousel">
+            <!-- Single Hero Slide -->
+            {% for acceuil in acceuils %}
+            <div class="single-hero-slide d-flex align-items-center justify-content-center">
+                <!-- Slide Img -->
+                <div class="slide-img bg-img" style="background-image: url({{ acceuil.image1.url }});"></div>
+                <!-- Slide Content -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="hero-slides-content text-center">
+                                <h6 data-animation="fadeInUp" data-delay="100ms">Levanjil<strong style="color: gray">Play</strong></h6>
+                                <h2 data-animation="fadeInUp" data-delay="300ms">{{ acceuil.artist1 }} <span>{{ acceuil.artist1 }} </span></h2>
+                                <a data-animation="fadeInUp" data-delay="500ms" href="{% url 'music:index' %}" class="btn oneMusic-btn mt-50">Commencer <i class="fa fa-angle-double-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            <!-- Single Hero Slide -->
+            <div class="single-hero-slide d-flex align-items-center justify-content-center">
+                {% for acceuil in acceuils %}
+                <!-- Slide Img -->
+                <div class="slide-img bg-img" style="background-image: url({{ acceuil.image2.url }});"></div>
+                <!-- Slide Content -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="hero-slides-content text-center">
+                                <h6 data-animation="fadeInUp" data-delay="100ms">Levanjil<strong style="color: gray">Play</strong></h6>
+                                <h2 data-animation="fadeInUp" data-delay="300ms">{{ acceuil.artist2 }} <span>{{ acceuil.artist2 }} </span></h2>
+                                <a data-animation="fadeInUp" data-delay="500ms" href="{% url 'music:index' %}" class="btn oneMusic-btn mt-50">Commencer <i class="fa fa-angle-double-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- ##### Hero Area End ##### -->
+
+    <!-- ##### Latest Albums Area Start ##### -->
+    <section class="latest-albums-area section-padding-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading style-2">
+                        <h2><em><u>Artistes Populaires</u></em></h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="albums-slideshow owl-carousel">
+                        <!-- Single Album -->
+                        <div class="single-album">
+                            <img src="{% static 'music/img/bg-img/debo.jpg' %}" alt="">
+                            <div class="album-info">
+                                <a href="https://www.google.com/search?q=deborah+henristal&ie=utf-8&oe=utf-8&client=firefox-b-ab" target="_blank">
+                                    <h5>Deborah Henristal</h5>
+                                </a>
+                                 <a href="https://www.google.com/search?q=deborah+henristal&ie=utf-8&oe=utf-8&client=firefox-b-ab" target="_blank"><p>Ecouter</p></a>
+                            </div>
+                        </div>
+
+                        <!-- Single Album -->
+                        <div class="single-album">
+                            <img src="{% static 'music/images/gabe.jpg' %}" alt="">
+                            <div class="album-info">
+                                <a href="https://www.google.com/search?q=fre+gabe&ie=utf-8&oe=utf-8&client=firefox-b-ab"target="_blank">
+                                    <h5>Fre gabe</h5>
+                                </a>
+                                 <a href="https://www.google.com/search?q=fre+gabe&ie=utf-8&oe=utf-8&client=firefox-b-ab"target="_blank"><p>Ecouter</p></a>
+                            </div>
+                        </div>
+
+                        <!-- Single Album -->
+                        <div class="single-album">
+                            <img src="{% static 'music/img/bg-img/wiliadel.jpg' %}" alt="">
+                            <div class="album-info">
+                                <a href="https://www.google.com/search?q=wiliadel+denervil&ie=utf-8&oe=utf-8&client=firefox-b-ab"target="_blank">
+                                    <h5>Wiliadel Denervil</h5>
+                                </a>
+                                 <a href="https://www.google.com/search?q=wiliadel+denervil&ie=utf-8&oe=utf-8&client=firefox-b-ab"target="_blank"><p>Ecouter</p></a>
+                            </div>
+                        </div>
+
+                        <!-- Single Album -->
+                        <div class="single-album">
+                            <img src="{% static 'music/img/bg-img/stan.jpg' %}" alt="">
+                            <div class="album-info">
+                                <a href="https://www.google.com/search?q=stanley+georges&ie=utf-8&oe=utf-8&client=firefox-b-ab"target="_blank">
+                                    <h5>Stanley Georges</h5>
+                                </a>
+                                 <a href="https://www.google.com/search?q=stanley+georges&ie=utf-8&oe=utf-8&client=firefox-b-ab"target="_blank"><p>Ecouter</p></a>
+                            </div>
+                        </div>
+
+                        <!-- Single Album -->
+                        <div class="single-album">
+                            <img src="{% static 'images/delly.jpg' %}" alt="">
+                            <div class="album-info">
+                                <a href="https://www.google.com/search?q=delly+benson&ie=utf-8&oe=utf-8&client=firefox-b-ab"target="_blank">
+                                    <h5>Delly Benson</h5>
+                                </a>
+                                 <a href="https://www.google.com/search?q=delly+benson&ie=utf-8&oe=utf-8&client=firefox-b-ab"target="_blank"><p>Ecouter</p></a>
+                            </div>
+                        </div>
+
+                        <!-- Single Album -->
+                        <div class="single-album">
+                            <img src="{% static 'music/img/bg-img/brutus.jpg' %}" alt="">
+                            <div class="album-info">
+                                <a href="https://www.google.com/search?q=spencer+brutus&ie=utf-8&oe=utf-8&client=firefox-b-ab"target="_blank">
+                                    <h5>Spencer Brutus</h5>
+                                </a>
+                                 <a href="https://www.google.com/search?q=spencer+brutus&ie=utf-8&oe=utf-8&client=firefox-b-ab"target="_blank"><p>Ecouter</p></a>
+                            </div>
+                        </div>
+
+                        <!-- Single Album -->
+                        <div class="single-album">
+                            <img src="{% static 'music/img/bg-img/washly.jpeg' %}" alt="">
+                            <div class="album-info">
+                                <a href="https://www.google.com/search?q=washly+jean&ie=utf-8&oe=utf-8&client=firefox-b-ab"target="_blank">
+                                    <h5>Washly Jean</h5>
+                                </a>
+                                 <a href="https://www.google.com/search?q=washly+jean&ie=utf-8&oe=utf-8&client=firefox-b-ab"target="_blank"><p>Ecouter</p></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Latest Albums Area End ##### -->
+
+    <!-- ##### Buy Now Area Start ##### -->
+    <section class="oneMusic-buy-now-area has-fluid bg-gray section-padding-100">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading style-2">
+                        <h2>Recemment Ajouter</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                   {% for album in albums %}
+                <!-- Single Album Area -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="single-album-area wow fadeInUp" data-wow-delay="100ms">
+                        <div class="album-thumb">
+                            <a href="{% url 'music:detail' album.id %}"><img src="{{ album.album_logo.url }}" alt=""></a>
+                            <!-- Album Price -->
+                            <div class="album-price">
+                                <p>{{ album.genre }}</p>
+                            </div>
+                            <!-- Play Icon -->
+                            <div class="play-icon">
+                                <a href="{% url 'music:detail' album.id %}"><span class="icon-play-button"></span></a>
+                            </div>
+                        </div>
+                        <div class="album-info">
+                            <a href="{% url 'music:detail' album.id %}">
+                                <h5>{{ album.album_title }}</h5>
+                            </a>
+                            <p>{{ album.artist }}</p>
+                        </div>
+                    </div>
+                </div>
+{% cycle '' '' '' '' '' '<div class="clearfix visible-lg"></div>' %}
+            {% endfor %}
+                <!-- Single Album Area -->
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="load-more-btn text-center wow fadeInUp" data-wow-delay="300ms">
+                        <a href="{% url 'music:albums' %}" class="btn oneMusic-btn">Lire Plus <i class="fa fa-angle-double-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Buy Now Area End ##### -->
+
+    <!-- ##### Featured Artist Area Start ##### -->
+{% for priere in prieres %}
+    <section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed" style="background-image: url({{ priere.priere_logo.url }});">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-md-12 col-lg-12">
+                    <div class="featured-artist-content">
+                        <div class="section-heading white text-center mb-30">
+                            <h2>priere</h2>
+                            <p> <b>Du Jours</b> </p>
+                        </div>
+                        <p>{{ priere.body }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endfor %}
+    <!-- ##### Featured Artist Area End ##### -->
+
+    <!-- ##### Miscellaneous Area Start ##### -->
+    <section class="miscellaneous-area section-padding-100-0">
+        <div class="container">
+            <div class="row">
+                <!-- ***** Weeks Top ***** -->
+                
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Miscellaneous Area End ##### -->
+
+    <!-- ##### Contact Area Start ##### -->
+    <section class="contact-area section-padding-100 bg-img bg-overlay bg-fixed has-bg-img" style="background-image: url({% static 'music/img/bg-img/breadcumb2.jpg' %});">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading white">
+                        <h2 style="font-family: cursive;">Contacter Nous</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 env">
+                    <!-- Contact Form Area -->
+                    <div class="contact-form-area">
+                        <form role="form" id="form"action="" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="contact_name" placeholder="Nom" required="required">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" name="contact_email" placeholder="E-mail" required="required">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="contact_subject" placeholder="Sujet">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <textarea class="form-control" name="content" cols="30" rows="10" placeholder="Message" required="required"></textarea>
+                                    </div>
+                                </div>
+                        <div class="container">
+                             <div class="row">
+                                    <div class="col text-center">
+                                        <button class="btn-center oneMusic-btn mt-30" type="submit">Envoyer <i class="fa fa-angle-double-right"></i></button>
+                                    </div>
+                                </div>       
+                        </div>
+                                
+                                
+                            </div>
+                        </form>
+                     </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 con" >
+                    <ul>
+                        <li>
+                            <i class="fa fa-phone iconi"></i>(+509) 40533098 / 47929400</li><br />
+                        <li>
+                            <i class="fa fa-envelope iconi"></i>levanjilplay@gmail.com</li><br />
+                        <li>
+                            <i class="fa fa-twitter iconi"></i>twitter</li><br />
+                        <li>
+                            <i class="fa fa-facebook iconi"></i>facebook</li><br />
+                        <li>
+                            <i class="fa fa-instagram iconi"></i>instagram
+                        </li><br />
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Contact Area End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area">
+        <div class="container">
+            <div class="row d-flex flex-wrap align-items-center">
+                <div class="col-12 col-md-6">
+                    
+                    <p class="copywrite-text"><a href="#">
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved |   by <a href="" target="_blank">DOCTYPE_CODERS</a>
+</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area Start ##### -->
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="{% static 'music/js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'music/js/bootstrap/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'music/js/bootstrap/bootstrap.min.js' %}"></script>
+    <!-- All Plugins js -->
+    <script src="{% static 'music/js/plugins/plugins.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'music/js/active.js' %}"></script>
+</body>
+
+</html>

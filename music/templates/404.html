@@ -1,0 +1,29 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ERROR-404</title>
+	<link rel="icon" href="{% static 'favicon.ico' %}">
+</head>
+<body>
+	
+<div class="error-top">
+    <p style="text-align: center;"><img src="{% static 'music/img/bg-img/blog1.jpg' %}" alt="image" /></p>
+    <h3>Page <b>444</b> Not Found...</h3>
+    
+<p><em>I'm lost. I'm like a king without a throne.</em></p>
+    <h2>Desolee cet URL n'est pas autoriser a notre site</h2>
+    <hr>
+        <div class="clearfix"></div>
+
+        <div class="error">
+            Veuillez Retourner a la page d'<a class="not" href="{% url 'music:pageD' %}"><button style="background-color: blue">Acceuil</button></a>
+        </div>
+
+        <!-- Administration/Admin/574f77624148404834503478343c7c7c6e316e/ -->
+</div>
+<div class="clearfix">
+</div>
+
+</body>
+</html>

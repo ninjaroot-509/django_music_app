@@ -1,0 +1,282 @@
+/*===================================================================================================================*/
+/*===================================================================================================================*/
+/*===================================================================================================================*/
+/*design by DOCTYPE Coders , develloped by Doctype Coders , edition 2019 music website , copyright all right reserved*/
+/*===================================================================================================================*/
+/*===================================================================================================================*/
+/*===================================================================================================================*/
+
+
+@import url('https://fonts.googleapis.com/css?family=Lobster&display=swap');
+
+
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+.item{
+ 	color: white;
+ 	
+ 	font-weight: bold;
+ 	font-size: 15px;
+
+ 	margin-right: 15px;
+
+}
+
+.item:hover{
+	color: #7f8fa6;
+}
+
+.humberger{
+	color: white;
+
+	border: none;
+
+	background: none; 
+}
+
+.humberger-icon{
+	display: none;
+}
+
+.barre{
+	background-color: #353b48;
+
+	margin-bottom: 40px;
+}
+
+.search{
+	margin-right: 300px;
+}
+
+.btn-submit{
+	background-color: #718093;
+	color: white;
+
+	border: 1px solid #718093;
+    
+    transition: 1s;
+}
+
+.btn-submit:hover{
+      background-color: #71809336;
+      border: 1px solid #71809336;
+}
+
+.cree{
+	margin-right: 20px;
+	margin-left: 30px;
+}
+
+.cree-log{
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+.cree-item{
+	background-color: #40739e;
+	color: white;
+
+	border: 1px solid #40739e;
+
+	margin: 5px;
+
+	transition: 1s; 
+}
+
+.cree-item:hover{
+
+	background-color: #00a8ff36;
+
+	border: 1px solid ;
+}
+
+/*==============================*/
+/*==========login page==========*/
+/*==============================*/
+
+.container-log{
+	margin-top: 80px;
+	margin-bottom: 100px;
+
+	background-image: url(../images/coll1.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+
+	text-align: center;
+}
+
+.sign{
+	color: white;
+	font-weight: bold;
+	font-family: 'Lobster', cursive;
+
+}
+
+
+.sus{
+	background: none;
+	border: none;
+	padding-left: 5px;
+	color: white;
+}
+
+.suss{
+	border-bottom: 2px solid #4cd137;
+	padding: 4px;
+	transition: 1s;
+}
+
+.suss:hover{
+    border-bottom: 2px solid white;
+}
+
+#icon{
+	color: #4cd137;
+}
+
+::placeholder{
+	color: white;
+}
+
+.sub{
+	background-color: #4cd137;
+
+	border: 1px solid #4cd137;
+	border-radius: 50px 50px;
+
+	font-weight: bold;
+    
+    width: 90px;
+}
+
+.susc{
+	color: white;
+}
+
+.connect{
+	color: white;
+	border-bottom: 1px solid white;
+}
+/*end input style*/
+
+/*end header */
+/*open for container body section*/
+
+.add{
+    background: -moz-linear-gradient(left, #192a56 0%, #40739e 25%, #192a56 50%, #40739e 50%, #192a56 73%, #40739e 100%);
+	/* FF3.6-15 */
+	background: -webkit-linear-gradient(left, #192a56 0%, #40739e 25%, #192a56 50%, #40739e 50%, #192a56 73%, #40739e 100%);
+	/* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right, #192a56 0%, #40739e 25%, #192a56 50%, #40739e 50%, #192a56 73%, #40739e 100%);
+
+    color: white;
+
+    padding: 2px;
+    padding-left: 20px;
+
+    border: 0.5px solid;
+    border-radius: 50px;
+}
+
+.box{
+
+}
+
+
+.principal{
+	padding-top: 20px;
+}
+
+.gallery {
+	-webkit-column-count: 3;
+	-moz-column-count: 3;
+	column-count: 3;
+	-webkit-column-width: 33%;
+	-moz-column-width: 33%;
+	column-width: 33%; 
+}
+
+.gallery .pics {
+   -webkit-transition: all 350ms ease;
+   transition: all 350ms ease; 
+}
+
+.gallery .animation {
+	-webkit-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1); 
+}
+
+.pics{
+	text-align: center;
+
+	border: 0px solid #00a8ff;
+
+	transition: 1s;
+
+	padding: 7px;
+	margin: 0px;
+    
+}
+
+.listen{
+	width: auto;
+	margin-top: 5px;
+	background-color: #40739e;
+	border: 1px solid #40739e;
+}
+
+
+
+
+
+
+@media screen and (max-width: 768px){
+
+	.humberger-icon{
+	padding: 0px;
+
+	font-size: 30px;
+
+	display: block;
+}
+
+	.search{
+	margin-right: 10px;
+}
+
+/*container-log style*/
+
+.container-log{
+	width: 300px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+
+}
+
+.sign{
+	margin-top: 20px;
+
+	color: white;
+	font-weight: bold;
+
+
+}
+
+
+
+@media screen and (max-width: 1199px){
+
+	.search{
+	margin-right: 100px;
+}
+.cree{
+	margin-right: 10px;
+	margin-left: 10px;
+}
+}
+
+

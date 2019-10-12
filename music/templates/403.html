@@ -1,0 +1,24 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ERROR-403</title>
+	<link rel="icon" href="{% static 'favicon.ico' %}">
+</head>
+<body>
+	
+<div class="error-top">
+    <p style="text-align: center;"><img src="{% static 'music/img/bg-img/blog1.jpg' %}" alt="image" /></p>
+    <h3>ERROR <b>403</b></h3>
+<p><em>Oops ! I did it again.</em></p>
+  <p>Une erreur s'est produite
+</p>
+  <hr>
+<div class="clearfix">
+	 <div class="error">
+            Veuillez Retourner a la page d'<a class="not" href="{% url 'music:pageD' %}"><button style="background-color: blue">Acceuil</button></a>
+        </div>
+</div>
+
+</body>
+</html>

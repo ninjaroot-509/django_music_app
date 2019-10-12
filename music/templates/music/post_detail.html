@@ -1,0 +1,405 @@
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+     
+    <title>Actualites</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'music/css/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'music/vendors/linericon/style.css' %}">
+    <link rel="stylesheet" href="{% static 'music/css/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'music/vendors/owl-carousel/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'music/vendors/lightbox/simpleLightbox.css' %}">
+    <link rel="stylesheet" href="{% static 'music/vendors/nice-select/css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'music/vendors/animate-css/animate.css' %}">
+    <!-- main css -->
+    <link rel="stylesheet" href="{% static 'music/css/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'music/css/style.css' %}">
+</head>
+
+<body>
+
+    <!--================ Start Header Menu Area =================-->
+    <header class="header-area">
+        <!-- Navbar Area -->
+        <div class="oneMusic-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="oneMusicNav">
+
+                        <!-- Nav brand -->
+                        <a href="{% url 'music:pageD' %}"><span><img src="{% static 'music/img/core-img/logo.png' %}" alt="" style="width: 100px; margin-bottom: 15px"></span></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="{% url 'music:pageD' %}"><i class="icon-home"></i> Acceuil</a></li>
+                                    <li><a href="#">Albums</a>
+                                    <ul class="dropdown">
+                                    <li><a href="{% url 'music:index' %}">Recent</a></li>
+                                    <li><a href="{% url 'music:albums' %}">Vedette</a></li>
+                                   </ul>
+                                    <li><a href="#"><i class="icon-file-2"></i> Musiques</a>
+                                        <ul class="dropdown">
+                                            <li><a href="">Francaise</a></li>
+                                            <li><a href="">Anglaise</a></li>
+                                            <li><a href="">Espagnole</a></li>
+                                            <li><a href="">Africaine</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="{% url 'music:playlist' %}"><i class="icon-music"></i> Playlists</a></li>
+                                    <li style="display: none;"><a href="{% url 'music:blog' %}"><i class="icon-message"></i> Blog</a></li>
+                                    <li><a href="{% url 'music:contact' %}"><i class="icon-message-1"></i> Contact</a></li>
+                                </ul>
+
+                                <!-- Login/Register & Cart Button -->
+                                <div class="login-register-cart-button d-flex align-items-center">
+                                    <!-- Login/Register -->
+                                    <div class="login-register-btn mr-50">
+                                        <a href="{% url 'music:logout_user' %}" id="loginBtn"><i class="icon-user-3"></i> Deconnecter</a>
+                                    </div>
+                                </div>
+                                </div>
+                            <!-- Nav End -->
+
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--================ End Header Menu Area =================-->
+
+    <!--================Home Banner Area =================-->
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url({% static 'music/img/bg-img/breadcumb3.jpg' %});">
+        <div class="bradcumbContent">
+            <p>{{ post.title }}</p>
+            <h2>POST VIEW</h2>
+        </div>
+    </section>
+    <!--================End Home Banner Area =================-->
+
+    <!--================Blog Area =================-->
+    <section class="blog_area single-post-area section_gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 posts-list">
+                    <div class="single-post row">
+                        <div class="col-lg-12">
+                            <div class="feature-img">
+                                <img class="img-fluid" src="{{ post.post_logo.url }}" alt="logo">
+                            </div>
+                        </div>
+                        <div class="col-lg-3  col-md-3">
+                            <div class="blog_info text-right">
+                                <div class="post_tag">
+                                        <a href="#">Levanjil<b>Play</b>,</a>
+                                        <a class="active" href="#">DOCTYPE_CODERS,</a>
+                                        <a href="#">Sa-Corp,</a>
+                                        <a href="#">Ssociety</a>
+                                    </div>
+                                    <ul class="blog_meta list">
+                                        <li><a href="#">Published {{ post.publish }} by {{ post.author }}<i class="lnr lnr-user"></i></a></li>
+                                        <li><a href="#">{{ post.created_on }}<i class="lnr lnr-calendar-full"></i></a></li>
+                                        <li><a href="#">1 Views<i class="lnr lnr-eye"></i></a></li>
+                                        <li><a href="{{ post.get_absolute_url }}">{{ post.comments.count }} Comments<i class="lnr lnr-bubble"></i></a></li>
+                                    </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 col-md-9 blog_details">
+                            <h2>{{ post.title }}</h2>
+                            <p class="excert">
+                                {{ post.content|linebreaks }}
+                                </p>
+                        </div>
+                       
+                    </div>
+                    <div class="navigation-area">
+                        <div class="row">
+                            <h3 style="color: cyan; margin-left: 25px">{{ post.comments.count }} Commentaire</h3>
+                        </div>
+                    </div>
+                    <div class="comments-area">
+                        {% for comment in comments %}
+                        <div class="comment-list">
+                            <div class="single-comment justify-content-between d-flex">
+                                <div class="user justify-content-between d-flex">
+                                    <div class="thumb">
+                                    </div>
+                                    <div class="desc">
+                                        <h5><a href="#">by {{ comment.name }}</a></h5>
+                                        <p class="date">{{ comment.created|timesince }}</p>
+                                        <p class="comment">
+                                            {{ comment.body|linebreaks }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- <div class="reply-btn">
+                                    <a href="" class="btn-reply text-uppercase"></a>
+                                </div> -->
+                            </div>
+                        </div>
+                        {% if empty %}
+            <p>Il y a aucun commentaire pour ce post</p>
+                    {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="comment-form">
+                        <h4>Laisser une commentaire</h4>
+                        {% if new_comment %}
+                        <h2>Votre comment est accepter.</h2>
+                        {% endif %}
+                        <form role="form" id="comment_form" action="." method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+                            <div class="form-group form-inline">
+                                <div class="form-group col-lg-6 col-md-6 email">
+                                    <input type="email" class="form-control" name="email" placeholder="Enter email address"
+                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" value="{{ user.email }}" required="required">
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6 name" style="display: none; visibility: hidden;">
+                                    <input type="text" class="form-control" name="name" placeholder="Enter Name" onfocus="this.placeholder = ''"
+                                        onblur="this.placeholder = 'Enter Name'" value="{{ user.username }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="subject" placeholder="Subject" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Subject'" required="required">
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control mb-10" rows="5" name="body" placeholder="Messege"
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required="required"></textarea>
+                            </div>
+                            <button class="primary-btn">Commente</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="blog_right_sidebar">
+                        <aside class="single_sidebar_widget search_widget">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search Posts">
+                                <span class="input-group-btn">
+                                    <a href="{% url 'music:blog' %}"><button class="btn btn-default" type="button"><i class="lnr lnr-magnifier"></i></button></a>
+                                </span>
+                            </div><!-- /input-group -->
+                            <div class="br"></div>
+                        </aside>
+                        <aside class="single_sidebar_widget author_widget">
+                            <img class="author_img rounded-circle" src="{{ post.author.profile.image.url }}" alt="">
+                            <h4>{{ post.author }}</h4>
+                            <p>Membre de DOCTYPE_CODERS</p>
+                            <div class="social_icon">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-github"></i></a>
+                                <a href="#"><i class="fa fa-behance"></i></a>
+                            </div>
+                            <p>LE SEUL <b>INDIVIDU</b> FORME EST CELUI QUI A APPRIS COMMENY APPRENDRE</p>
+                            <div class="br"></div>
+                        </aside>
+                        <aside class="single_sidebar_widget popular_post_widget">
+                            <h3 class="widget_title">Posts Populaire</h3>
+                            {% for post in posts %}
+                            <div class="media post_item">
+                                <a href="{{ post.get_absolute_url }}"><img src="{{ post.post_logo.url }}" alt="post" style="width: 100px"></a>
+                                <div class="media-body">
+                                    <a href="{{ post.get_absolute_url }}">
+                                        <h3>{{ post.title }}</h3>
+                                    </a>
+                                    <p>{{ post.content|truncatewords:5|linebreaks }}</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <div class="br"></div>
+                        </aside>
+                        <!-- <aside class="single_sidebar_widget ads_widget">
+                            <a href="#"><img class="img-fluid" src="{% static 'music/images/blog/add.jpg' %}" alt=""></a>
+                            <div class="br"></div>
+                        </aside> -->
+                        <aside class="single_sidebar_widget post_category_widget">
+                            <h4 class="widget_title">Post Catgories</h4>
+                            <ul class="list cat-list">
+                                <li>
+                                    <a href="#" class="d-flex justify-content-between">
+                                        <p>Kwazad</p>
+                                        <p>0</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="d-flex justify-content-between">
+                                        <p>Priere</p>
+                                        <p>1</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="d-flex justify-content-between">
+                                        <p>Music recent</p>
+                                        <p>7</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="d-flex justify-content-between">
+                                        <p>Artistes</p>
+                                        <p>2</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="br"></div>
+                        </aside>
+                        <aside class="single-sidebar-widget newsletter_widget">
+                            <h4 class="widget_title">Newsletter</h4>
+                            <p>Voulez-vous S'abonnez a <strong>Levanjil<b>Play</b></strong>
+                            </p>
+                            <div class="form-group d-flex flex-row">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+                                    </div>
+                                    <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Enter email"
+                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email'">
+                                </div>
+                                <a href="#" class="bbtns">S'abonne'</a>
+                            </div>
+                            <p class="text-bottom">Abonnez vous ici</p>
+                            <div class="br"></div>
+                        </aside>
+                        <aside class="single-sidebar-widget tag_cloud_widget">
+                            <h4 class="widget_title">Idees</h4>
+                            <ul class="list">
+                                <li><a href="#">Artiste</a></li>
+                                <li><a href="#">Culte</a></li>
+                                <li><a href="#">Kwazad</a></li>
+                                <li><a href="#">Priere</a></li>
+                                <li><a href="#">Meditations</a></li>
+                                <li><a href="#">Environnement</a></li>
+                            </ul>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================Blog Area =================-->
+
+    <section class="contact-area section-padding-100 bg-img bg-overlay bg-fixed has-bg-img" style="background-image: url({% static 'music/img/bg-img/breadcumb2.jpg' %});">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading white">
+                        <p>Pour toutes les ...</p>
+                        <h2 style="font-family: cursive;">Contacter Nous</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <!-- Contact Form Area -->
+                    <div class="contact-form-area">
+                        <form role="form" id="form" action="" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" name="contact_email" placeholder="E-mail" type="aria-hidden">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="form-group" style="display: none; visibility: hidden;">
+                                        <input type="text" class="form-control" name="contact_name" placeholder="Name" type="hidden" value="{{ user.username }}">
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="contact_subject" placeholder="Subject">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <textarea class="form-control" name="content" cols="30" rows="10" placeholder="Message" required="required"></textarea>
+                                    </div>
+                                </div>
+                                <button class="btn oneMusic-btn mt-30" type="submit">Envoye <i class="fa fa-angle-double-right"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ Start footer Area  =================-->
+    <footer class="footer-area">
+        <div class="container">
+            <div class="row d-flex flex-wrap align-items-center">
+                <div class="col-12 col-md-6">
+                    <a href="{% url 'music:pageD' %}"><span><img src="{% static 'music/img/core-img/logo.png' %}" alt="" style="width: 120px;"></span></a>
+                    <p class="copywrite-text"><a href="#">
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Stanley <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="" target="_blank">DOCTYPE_CODERS</a>
+</p>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="footer-nav">
+                        <ul>
+                            <li><a href="{% url 'music:pageD' %}"><i class="icon-home"></i> Acceuil</a></li>
+                            <li><a href="{% url 'music:playlist' %}"><i class="icon-music"></i> Playlists</a></li>
+                            <li><a href="{% url 'music:blog' %}"><i class="icon-message"></i> Blog</a></li>
+                            <li><a href="{% url 'music:contact' %}"><i class="icon-message-1"></i> Contact</a></li>
+                            <li><a href="{% url 'music:logout_user' %}">Deconnecter</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+        <!--================ End footer Area  =================-->
+    
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="{% static 'music/js/js/jquery-3.2.1.min.js' %}"></script>
+        <script src="{% static 'music/js/js/popper.js' %}"></script>
+        <script src="{% static 'music/js/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'music/js/js/stellar.js' %}"></script>
+        <script src="{% static 'music/vendors/nice-select/js/jquery.nice-select.min.js' %}"></script>
+        <script src="{% static 'music/vendors/owl-carousel/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'music/js/js/owl-carousel-thumb.min.js' %}"></script>
+        <script src="{% static 'music/js/js/jquery.ajaxchimp.min.js' %}"></script>
+        <script src="{% static 'music/vendors/counter-up/jquery.counterup.js' %}"></script>
+        <script src="{% static 'music/js/js/mail-script.js' %}"></script>
+        <!--gmaps Js-->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+        <script src="{% static 'music/js/js/gmaps.min.js' %}"></script>
+        <script src="{% static 'music/js/js/theme.js' %}"></script>
+        <script src="{% static 'music/js/jquery/jquery-2.2.4.min.js' %}"></script>
+	    <!-- Popper js -->
+	    <script src="{% static 'music/js/bootstrap/popper.min.js' %}"></script>
+	    <!-- Bootstrap js -->
+	    <script src="{% static 'music/js/bootstrap/bootstrap.min.js' %}"></script>
+	    <!-- All Plugins js -->
+	    <script src="{% static 'music/js/plugins/plugins.js' %}"></script>
+	    <!-- Active js -->
+	    <script src="{% static 'music/js/active.js' %}"></script>
+    </body>
+    
+    </html>

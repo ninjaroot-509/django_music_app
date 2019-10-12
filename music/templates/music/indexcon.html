@@ -1,0 +1,329 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Levanjil-play-albums-R...</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+     
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'music/css/style.css' %}">
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+        <!-- Navbar Area -->
+        <div class="oneMusic-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="oneMusicNav">
+
+                        <!-- Nav brand -->
+                        <a href="{% url 'music:pageD' %}"><span><img src="{% static 'music/img/core-img/logo.png' %}" alt="" style="width: 100px; margin-bottom: 15px"></span></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="{% url 'music:pageD' %}"><i class="icon-home"></i> Acceuil</a></li>
+                                    <li><a href="#">Albums</a>
+                                    <ul class="dropdown">
+                                    <li><a href="{% url 'music:index' %}">Recent</a></li>
+                                    <li><a href="{% url 'music:albums' %}">Vedette</a></li>
+                                   </ul>
+                                    <li><a href="#"><i class="icon-file-2"></i> Musiques</a>
+                                        <ul class="dropdown">
+                                            <li><a href="">Francaise</a></li>
+                                            <li><a href="">Anglaise</a></li>
+                                            <li><a href="">Espagnole</a></li>
+                                            <li><a href="">Africaine</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="{% url 'music:playlist' %}"><i class="icon-music"></i> Playlists</a></li>
+                                    <li style="display: none;"><a href="{% url 'music:blog' %}"><i class="icon-message"></i> Blog</a></li>
+                                    <li><a href="{% url 'music:contact' %}"><i class="icon-message-1"></i> Contact</a></li>
+                                </ul>
+
+                                <!-- Login/Register & Cart Button -->
+                                <div class="login-register-cart-button d-flex align-items-center">
+                                    <!-- Login/Register -->
+                                    <div class="login-register-btn mr-50">
+                                        <a href="{% url 'music:logout_user' %}" id="loginBtn"><i class="icon-user-3"></i> Deconnecter</a>
+                                    </div>
+                                </div>
+                                </div>
+                            <!-- Nav End -->
+
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Breadcumb Area Start ##### -->
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url({% static 'music/img/bg-img/breadcumb3.jpg' %});">
+        <div class="bradcumbContent">
+            <h3>Albums</h3>
+            <h3>Recemments Ajoutes</h3>
+        </div>
+    </section>
+    <!-- ##### Breadcumb Area End ##### -->
+
+    <!-- ##### Events Area Start ##### -->
+    <section class="events-area section-padding-100">
+        <div class="container">
+            <div class="row">
+{% for album in albums %}
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-event-area mb-30">
+                        <div class="event-thumbnail">
+                            <a href="{% url 'music:detail' album.id %}"><img src="{{ album.album_logo.url }}" alt=""></a>
+                        </div>
+                        <div class="event-text">
+                            <a href="{% url 'music:detail' album.id %}"><h4>{{ album.album_title }}</h4></a>
+                            <div class="event-meta-data">
+                                <a href="{% url 'music:detail' album.id %}" class="event-place">Artiste :  <b>{{ album.artist }}</b></a>
+                                <span class="event-date">Mois 00, 2019</span>
+                            </div>
+                            <a href="{% url 'music:detail' album.id %}" class="btn see-more-btn">Voir D'avantage</a>
+                        </div>
+                    </div>
+                </div>
+{% cycle '' '' '' '' '' '<div class="clearfix visible-lg"></div>' %}
+{% endfor %}
+<ul class="pagination" style="margin-top: 30px; margin-left: 10px">
+                                <li class="page-item">
+                                    {% if albums.has_previous %}
+                                    <a href="?page={{ albums.previous_page_number }}" class="page-link" aria-label="Previous">
+                                        <span aria-hidden="true">
+                                            <span class="lnr lnr-chevron-left">Precedent</span>
+                                        </span>
+                                    </a>
+                                    {% endif %}
+                                </li>
+                                <li class="page-item "><a href="?page=1" class="page-link">01</a></li>
+                                <li class="page-item"><a href="?page=2" class="page-link">02</a></li>
+                                <li class="page-item"><a href="?page=3" class="page-link">03</a></li>
+                                <li class="page-item"><a href="?page=4" class="page-link">04</a></li>
+                                <li class="page-item"><a href="?page=9" class="page-link">09</a></li>
+                                <li class="page-item">
+                                    {% if albums.has_next %}
+                                    <a href="?page={{ albums.next_page_number }}" class="page-link" aria-label="Next">
+                                        <span aria-hidden="true">
+                                            <span class="lnr lnr-chevron-right">Suivant</span>
+                                        </span>
+                                    </a>
+                                    {% endif %}
+                                </li>
+                            </ul>
+                <!-- Single Event Area -->
+
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="load-more-btn text-center mt-70">
+                        <a href="{% url 'music:albums' %}" class="btn oneMusic-btn">Albums En Vedettes <i class="fa fa-angle-double-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Events Area End ##### -->
+
+    <!-- ##### Newsletter & Testimonials Area Start ##### -->
+    <section class="newsletter-testimonials-area">
+        <div class="container">
+            <div class="row">
+
+                <!-- Newsletter Area -->
+                <div class="col-12 col-lg-6">
+                    <div class="newsletter-area mb-100">
+                        <div class="section-heading text-left mb-50">
+                            <p>newsletter</p>
+                            <h2>S'abonnez vous ici</h2>
+                        </div>
+                        <div class="newsletter-form">
+                            <form action="#">
+                                <input type="search" name="search" id="newsletterSearch" placeholder="E-mail">
+                                <button type="submit" class="btn oneMusic-btn">Abonnez <i class="fa fa-angle-double-right"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonials Area -->
+                <div class="col-12 col-lg-6">
+                    <div class="testimonials-area mb-100 bg-img bg-overlay" style="background-image: url({% static 'music/img/bg-img/bg-3.jpg' %});">
+                        <div class="section-heading white text-left mb-50">
+                            <h4 style="color: white; text-align: center;">LevanjilPlay</h4>
+                            <h2>Nos intentions</h2>
+                        </div>
+                        <!-- Testimonial Slide -->
+                        <div class="testimonials-slide owl-carousel">
+                            <!-- Single Slide -->
+                            <div class="single-slide">
+                                <p>Si vous lisez ceci, alors cet avertissement est pour vous. Chaque mot que vous lisez de ce texte inutile est une autre seconde perdue dans votre vie. Lisez-vous tout ce que vous êtes supposés lire ? Pensez-vous tout ce que vous êtes supposés penser ? Achetez-vous ce que l'on vous dit d'acheter ? Sortez de votre appartement. Quittez votre travail. Commencez à vous battre. Prouvez que vous êtes en vie. Si vous ne revendiquez pas votre humanité, vous deviendrez une statistique. Vous êtes prévenu...</p>
+                                <div class="testimonial-info d-flex align-items-center">
+                                    <div class="testimonial-thumb">
+                                        <img src="{% static 'music/img/bg-img/t1.jpg' %}" alt="">
+                                    </div>
+                                    <p>Kal-kyle, programmeur</p>
+                                </div>
+                            </div>
+                            <!-- Single Slide -->
+                            <div class="single-slide">
+                                <p>Si vous lisez ceci, alors cet avertissement est pour vous. Chaque mot que vous lisez de ce texte inutile est une autre seconde perdue dans votre vie. N'avez-vous rien d'autre à faire ? Votre vie est-elle si vide que, honnêtement, vous ne puissiez penser à une meilleure manière de passer ces moments ? Ou êtes-vous si impressionné par l'autorité que vous donnez votre respect et vouez votre foi à tous ceux qui s'en réclament ?</p>
+                                <div class="testimonial-info d-flex align-items-center">
+                                    <div class="testimonial-thumb">
+                                        <img src="{% static 'music/img/bg-img/wt11.jpg' %}" alt="">
+                                    </div>
+                                    <p>Ninjaroot, Developer</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- ##### Newsletter & Testimonials Area End ##### -->
+
+    <!-- ##### Contact Area Start ##### -->
+    <section class="contact-area section-padding-100 bg-img bg-overlay bg-fixed has-bg-img" style="background-image: url({% static 'music/img/bg-img/breadcumb2.jpg' %});">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading white">
+                        <h2 style="font-family: cursive;">Contacter Nous</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 env">
+                    <!-- Contact Form Area -->
+                    <div class="contact-form-area">
+                        <form role="form" id="form"action="" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" name="contact_email" placeholder="E-mail" type="aria-hidden">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="form-group" style="display: none; visibility: hidden;">
+                                        <input type="text" class="form-control" name="contact_name" placeholder="Name" type="hidden" value="{{ user.username }}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="contact_subject" placeholder="Sujet">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <textarea class="form-control" name="content" cols="30" rows="10" placeholder="Message" required="required"></textarea>
+                                    </div>
+                                </div>
+                                <div class="container">
+                             <div class="row">
+                                    <div class="col text-center">
+                                        <button class="btn-center oneMusic-btn mt-30" type="submit">Envoyer <i class="fa fa-angle-double-right"></i></button>
+                                    </div>
+                                </div>       
+                        </div>
+                            </div>
+                        </form>                     </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 con" >
+                    <ul>
+                        <li>
+                            <i class="fa fa-phone iconi"></i>(+509) 40533098 / 47929400</li><br />
+                        <li>
+                            <i class="fa fa-envelope iconi"></i>levanjilplay@gmail.com</li><br />
+                        <li>
+                            <i class="fa fa-twitter iconi"></i>twitter</li><br />
+                        <li>
+                            <i class="fa fa-facebook iconi"></i>facebook</li><br />
+                        <li>
+                            <i class="fa fa-instagram iconi"></i>instagram
+                        </li><br />
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Contact Area End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area">
+        <div class="container">
+            <div class="row d-flex flex-wrap align-items-center">
+                <div class="col-12 col-md-6">
+                    <p class="copywrite-text"><a href="#">
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="" target="_blank">DOCTYPE_CODERS</a>
+</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area Start ##### -->
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="{% static 'music/js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'music/js/bootstrap/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'music/js/bootstrap/bootstrap.min.js' %}"></script>
+    <!-- All Plugins js -->
+    <script src="{% static 'music/js/plugins/plugins.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'music/js/active.js' %}"></script>
+</body>
+
+</html>

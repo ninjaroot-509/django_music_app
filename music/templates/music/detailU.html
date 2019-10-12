@@ -1,0 +1,277 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Details</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'music/css/style.css' %}">
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+        <!-- Navbar Area -->
+        <div class="oneMusic-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="oneMusicNav">
+
+                        <!-- Nav brand -->
+                        <a href="{% url 'music:pageD' %}"><span><img src="{% static 'music/img/core-img/logo.png' %}" alt="" style="width: 100px; margin-bottom: 15px"></span></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="{% url 'music:pageD' %}"><i class="icon-home"></i> Acceuil</a></li>
+                                    <li><a href="#">Albums</a>
+                                    <ul class="dropdown">
+                                    <li><a href="{% url 'music:index' %}">Recent</a></li>
+                                    <li><a href="{% url 'music:albums' %}">Vedette</a></li>
+                                   </ul>
+                                    <li><a href="#"><i class="icon-file-2"></i> Musiques</a>
+                                        <ul class="dropdown">
+                                            <li><a href="">Francaise</a></li>
+                                            <li><a href="">Anglaise</a></li>
+                                            <li><a href="">Espagnole</a></li>
+                                            <li><a href="">Africaine</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="{% url 'music:playlist' %}"><i class="icon-music"></i> Playlists</a></li>
+                                    <li style="display: none;"><a href="{% url 'music:blog' %}"><i class="icon-message"></i> Blog</a></li>
+                                    <li><a href="{% url 'music:contact' %}"><i class="icon-message-1"></i> Contact</a></li>
+                                </ul>
+
+                                <!-- Login/Register & Cart Button -->
+                                <div class="login-register-cart-button d-flex align-items-center">
+                                    <!-- Login/Register -->
+                                    <div class="login-register-btn mr-50">
+                                        <a href="{% url 'music:logout_user' %}" id="loginBtn"><i class="icon-user-3"></i> Deconnecter</a>
+                                    </div>
+                                </div>
+                                </div>
+                            <!-- Nav End -->
+
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Breadcumb Area Start ##### -->
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url({% static 'music/img/bg-img/breadcumb3.jpg' %});">
+        <div class="bradcumbContent">
+            <p>Musiques de </p>
+            <h3>{{ album.artist }}</h3>
+            <h4><u>{{ album.album_title }}</u></h4>
+        </div>
+    </section>
+    <!-- ##### Breadcumb Area End ##### -->
+
+    <!-- ##### Album Catagory Area Start ##### -->
+    <section class="album-catagory section-padding-100-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Album Catagory Area End ##### -->
+
+    <!-- ##### Buy Now Area Start ##### -->
+    <!-- ##### Buy Now Area End ##### -->
+
+    <!-- ##### Add Area Start ##### -->
+    <div class="add-area mb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="adds">
+                        <p style="text-align: center; margin-top: 10px"><img src="{{ album.album_logo.url }}" alt=""></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Add Area End ##### -->
+
+    <!-- ##### Song Area Start ##### -->
+    <div class="one-music-songs-area mb-70">
+        <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                {% for song in album.song_set.all %}
+                    <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
+                        <div class="song-thumbnail">
+                            
+                        </div>
+                        <div class="song-play-area">
+                            <div class="song-name">
+                                <p>{{ song.song_title }}<br><a href="{{ song.audio_file.url }}" download="{{ song.audio_file.url }}"> <i class="icon-download" style="color: red">Telecharger</i></a></p>
+                            </div>
+                            <audio preload="auto" controls>
+                                <source src="{{ song.audio_file.url }}">
+                            </audio>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Single Song Area -->
+
+            </div>
+        </div>
+    </div>
+    <!-- ##### Song Area End ##### -->
+
+    <!-- ##### Contact Area Start ##### -->
+    <section class="contact-area section-padding-100 bg-img bg-overlay bg-fixed has-bg-img" style="background-image: url({% static 'music/img/bg-img/breadcumb2.jpg' %});">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading white">
+                        <h2 style="font-family: cursive;">Contacter Nous</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 env">
+                    <!-- Contact Form Area -->
+                    <div class="contact-form-area">
+                        <form role="form" id="form"action="" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" name="contact_email" placeholder="E-mail" type="aria-hidden">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="form-group" style="display: none; visibility: hidden;">
+                                        <input type="text" class="form-control" name="contact_name" placeholder="Name" type="hidden" value="{{ user.username }}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="contact_subject" placeholder="Sujet">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <textarea class="form-control" name="content" cols="30" rows="10" placeholder="Message" required="required"></textarea>
+                                    </div>
+                                </div>
+                                <div class="container">
+                             <div class="row">
+                                    <div class="col text-center">
+                                        <button class="btn-center oneMusic-btn mt-30" type="submit">Envoyer <i class="fa fa-angle-double-right"></i></button>
+                                    </div>
+                                </div>       
+                        </div>
+                            </div>
+                        </form>
+                     </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 con" >
+                    <ul>
+                        <li>
+                            <i class="fa fa-phone iconi"></i>(+509) 40533098 / 47929400</li><br />
+                        <li>
+                            <i class="fa fa-envelope iconi"></i>levanjilplay@gmail.com</li><br />
+                        <li>
+                            <i class="fa fa-twitter iconi"></i>twitter</li><br />
+                        <li>
+                            <i class="fa fa-facebook iconi"></i>facebook</li><br />
+                        <li>
+                            <i class="fa fa-instagram iconi"></i>instagram
+                        </li><br />
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Contact Area End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area">
+        <div class="container">
+            <div class="row d-flex flex-wrap align-items-center">
+                <div class="col-12 col-md-6">
+                    <a href="{% url 'music:pageD' %}"><span><img src="{% static 'music/img/core-img/logo.png' %}" alt="" style="width: 120px;"></span></a>
+                    <p class="copywrite-text"><a href="#">
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Stanley <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="" target="_blank">DOCTYPE_CODERS</a>
+</p>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="footer-nav">
+                        <ul>
+                            <li><a href="{% url 'music:pageD' %}"><i class="icon-home"></i> Acceuil</a></li>
+                            <li><a href="{% url 'music:playlist' %}"><i class="icon-music"></i> Playlists</a></li>
+                            <li><a href="{% url 'music:blog' %}"><i class="icon-message"></i> Blog</a></li>
+                            <li><a href="{% url 'music:contact' %}"><i class="icon-message-1"></i> Contact</a></li>
+                            <li><a href="{% url 'music:logout_user' %}">Deconnecte</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area Start ##### -->
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="{% static 'music/js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'music/js/bootstrap/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'music/js/bootstrap/bootstrap.min.js' %}"></script>
+    <!-- All Plugins js -->
+    <script src="{% static 'music/js/plugins/plugins.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'music/js/active.js' %}"></script>
+</body>
+
+</html>

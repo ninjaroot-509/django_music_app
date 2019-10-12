@@ -1,0 +1,28 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>login-404</title>
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+	 
+</head>
+<body>
+	
+<div class="error-top">
+    <p style="text-align: center;"><img src="{% static 'music/images/pic_error.png' %}" alt="" /></p>
+    <h3>Page Not Found...</h3>
+    <h2>Desole {{ user.username }} Vous etres deja connecter a notre Site</h2>
+
+        <div class="clearfix"></div>
+
+        <div class="error">
+            Veuillez Retourner a la page d'<a class="not" href="{% url 'music:pageD' %}"><button style="background-color: blue">Acceuil</button></a>
+        </div>
+
+        <!-- Administration/Admin/574f77624148404834503478343c7c7c6e316e/ -->
+</div>
+<div class="clearfix">
+</div>
+
+</body>
+</html>
